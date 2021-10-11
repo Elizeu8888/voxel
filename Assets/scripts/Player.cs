@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim.SetBool("weapondrawn", false);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -23,17 +24,39 @@ public class Player : MonoBehaviour
         anim.SetFloat("speed", 0);
 
 
-        if(velocity > 0.01)
+
+       
+
+        if (Input.GetKey("v"))
         {
-            anim.SetFloat("speed", 1);
+            anim.SetBool("weapondrawn", true);
         }
+        if (Input.GetKey("c"))
+        {
+            anim.SetBool("weapondrawn", false);
+        }
+
+        if (anim.GetBool("weapondrawn") == true && Input.GetKey("f"))
+        {
+            anim.SetBool("attack", true);
+        }
+      
+
+
+
+
 
         if (Input.GetKey("w"))
         {
             anim.SetFloat("speed", 1);
             DoMove();
         }
-        rotation.y += Input.GetAxis("Mouse X");
+        else
+        {
+
+            anim.SetFloat("speed", 0);
+        }
+        rotation.y += Input.GetAxis("Horizontal");
         //rotation.x += -Input.GetAxis("Mouse Y");
         transform.eulerAngles = (Vector2)rotation * speed;
 
@@ -44,7 +67,7 @@ public class Player : MonoBehaviour
     {
         //Vector3 velocity = rb.velocity;
         
-        Vector3 v3Force = 10 * transform.forward;
+        Vector3 v3Force = 7 * transform.forward;
         GetComponent<Rigidbody>().AddForce(v3Force);
 
 
