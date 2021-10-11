@@ -18,7 +18,7 @@ public class Cameralook : MonoBehaviour
     {
         //transform.LookAt(target);
         rotation.y += Input.GetAxis("Mouse X");
-        rotation.x += -Input.GetAxis("Mouse Y");
+        //rotation.x += -Input.GetAxis("Mouse Y");
         transform.eulerAngles = (Vector2)rotation * speed;
 
     }
