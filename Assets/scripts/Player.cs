@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     Vector2 rotation = Vector2.zero;
     public float speed = 3;
 
+    Vector3 v3Force;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,8 @@ public class Player : MonoBehaviour
         anim.SetFloat("speed", 0);
 
 
+        anim.SetBool("attack", false);
 
-       
 
         if (Input.GetKey("v"))
         {
@@ -36,27 +38,18 @@ public class Player : MonoBehaviour
             anim.SetBool("weapondrawn", false);
         }
 
-        if (anim.GetBool("weapondrawn") == true && Input.GetKey("f"))
+        if (Input.GetKey("f"))
         {
             anim.SetBool("attack", true);
+
         }
-      
+
+        DoMove();
 
 
 
 
-
-        if (Input.GetKey("w"))
-        {
-            anim.SetFloat("speed", 1);
-            DoMove();
-        }
-        else
-        {
-
-            anim.SetFloat("speed", 0);
-        }
-        rotation.y += Input.GetAxis("Horizontal");
+        rotation.y += Input.GetAxis("Mouse X");
         //rotation.x += -Input.GetAxis("Mouse Y");
         transform.eulerAngles = (Vector2)rotation * speed;
 
@@ -66,9 +59,56 @@ public class Player : MonoBehaviour
     void DoMove()
     {
         //Vector3 velocity = rb.velocity;
-        
-        Vector3 v3Force = 7 * transform.forward;
-        GetComponent<Rigidbody>().AddForce(v3Force);
+
+
+        anim.SetFloat("moveX", 0);
+        anim.SetFloat("speed", 0);
+        anim.SetFloat("moveZ", 0);
+
+        if (Input.GetKey("w"))
+        {
+
+            Vector3 v3Force = 5 * transform.forward;
+            GetComponent<Rigidbody>().AddForce(v3Force);
+            anim.SetFloat("moveX", 1);
+            anim.SetFloat("speed", 1);
+        }
+
+
+
+        if (Input.GetKey("s"))
+        {
+
+            Vector3 v3Force = 5 * -transform.forward;
+            GetComponent<Rigidbody>().AddForce(v3Force);
+            anim.SetFloat("moveX", -1);
+            anim.SetFloat("speed", 2);
+        }
+
+
+
+        if (Input.GetKey("a"))
+        {
+
+            Vector3 v3Forceside = 5 * -transform.right;
+            GetComponent<Rigidbody>().AddForce(v3Forceside);
+            anim.SetFloat("moveZ", -1);
+            anim.SetFloat("speed", 2);
+        }
+
+
+        if (Input.GetKey("d"))
+        {
+
+            Vector3 v3Forceside = 5 * transform.right;
+            GetComponent<Rigidbody>().AddForce(v3Forceside);
+            anim.SetFloat("moveZ", 1);
+            anim.SetFloat("speed", 2);
+        }
+
+
+
+
 
 
 
