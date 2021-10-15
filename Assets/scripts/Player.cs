@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
 
 
         anim.SetBool("attack", false);
+        anim.SetBool("block", false);
 
 
         if (Input.GetKey("v"))
@@ -44,6 +45,21 @@ public class Player : MonoBehaviour
 
         }
 
+        if (Input.GetKey("b"))
+        {
+
+
+            anim.SetBool("block", true);
+
+        }
+
+
+
+
+
+
+
+
         DoMove();
 
 
@@ -53,6 +69,11 @@ public class Player : MonoBehaviour
         //rotation.x += -Input.GetAxis("Mouse Y");
         transform.eulerAngles = (Vector2)rotation * speed;
 
+    }
+
+    void FixedUpdate()
+    {
+        DoMove();
     }
 
 
