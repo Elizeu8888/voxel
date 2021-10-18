@@ -168,7 +168,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5345721113906734403}
-    m_Position: {x: 30, y: 730, z: 0}
+    m_Position: {x: 500, y: 1130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6366654248729529197}
     m_Position: {x: 40, y: 230, z: 0}
@@ -180,7 +180,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 956432987995421042}
-    m_Position: {x: 530, y: 540, z: 0}
+    m_Position: {x: 510, y: 770, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3464594230253254749}
     m_Position: {x: 720, y: 330, z: 0}
@@ -189,13 +189,13 @@ AnimatorStateMachine:
     m_Position: {x: 220, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9082002427906272738}
-    m_Position: {x: 30, y: 980, z: 0}
+    m_Position: {x: 500, y: 1380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8761935924489415661}
-    m_Position: {x: 270, y: 860, z: 0}
+    m_Position: {x: 740, y: 1260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7746313296263548627}
-    m_Position: {x: -210, y: 850, z: 0}
+    m_Position: {x: 260, y: 1250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8527462712091971661}
     m_Position: {x: -130, y: 490, z: 0}
@@ -663,43 +663,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: weapondrawn
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: sidespeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: moveX
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: moveZ
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: block
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
