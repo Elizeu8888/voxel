@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
     {
         Dojump();
         DoMove();
-        
+
+        //GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         transform.LookAt(target);
         anim.SetBool("attack", false);
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour
 
     void DoMove()
     {
-
+        
         //Vector3 velocity = rb.velocity;
 
         if (GetComponent<Rigidbody>().velocity.magnitude > 0.01)
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
             Vector3 v3Force = speed * transform.forward;
             GetComponent<Rigidbody>().AddForce(v3Force, ForceMode.Impulse);
             anim.SetFloat("moveX", 1);
-            anim.SetFloat("speed", 1);
+            
         }
 
 
@@ -145,7 +146,7 @@ public class Player : MonoBehaviour
             Vector3 v3Force = speed * -transform.forward;
             GetComponent<Rigidbody>().AddForce(v3Force, ForceMode.Impulse);
             anim.SetFloat("moveX", -1);
-            anim.SetFloat("speed", 2);
+            
         }
 
 
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
             Vector3 v3Forceside = speed * -transform.right;
             GetComponent<Rigidbody>().AddForce(v3Forceside, ForceMode.Impulse);
             anim.SetFloat("moveZ", -1);
-            anim.SetFloat("speed", 2);
+            
         }
 
 
@@ -166,11 +167,11 @@ public class Player : MonoBehaviour
             Vector3 v3Forceside = speed * transform.right;
             GetComponent<Rigidbody>().AddForce(v3Forceside, ForceMode.Impulse);
             anim.SetFloat("moveZ", 1);
-            anim.SetFloat("speed", 2);
+            
         }
 
 
-
+        
 
 
 
