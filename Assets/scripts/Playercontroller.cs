@@ -9,6 +9,8 @@ public class Playercontroller : MonoBehaviour
     public float speed = 6f;
     public float turnsmoothing = 0.1f;
     float turnsmoothvelocity;
+
+
     public float gravity = -9.81f;
     public float jumpheight = 5f;
 
@@ -18,11 +20,11 @@ public class Playercontroller : MonoBehaviour
 
     bool isgrounded;
     Vector3 velocity;
-    private Animator anim;
+    public Animator anim;
 
     void start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
 
@@ -33,28 +35,61 @@ public class Playercontroller : MonoBehaviour
 
 
         isgrounded = Physics.CheckSphere(groundcheck.position, grounddistance, groundmask);
+
+
         if (isgrounded && velocity.y < 0)
         {
             velocity.y = -13f;
         }
 
+
+
+        if ((GetComponent<Rigidbody>().velocity.magnitude > 0.01) && isgrounded)
+        {
+            anim.SetFloat("speed", 1);
+
+        }
+        else
+        {
+            anim.SetFloat("speed", 0);
+        }
+
+
+
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+
+
+
+
+
+
+
         if (direction.magnitude >= 0.1f)
         {
+
+
             float targetangle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetangle, ref turnsmoothvelocity, turnsmoothing);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             
+
             Vector3 movedir = Quaternion.Euler(0f, targetangle, 0f) * Vector3.forward;
             controller.Move(movedir.normalized * speed * Time.deltaTime);
         }
+
+
+
+
         if (Input.GetKey("space") && isgrounded)
         {
             velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
         }
+
+
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -69,14 +104,6 @@ public class Playercontroller : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*if (GetComponent<Rigidbody>().velocity.magnitude > 0.01)
-        {
-            anim.SetFloat("speed", 1);
 
-        }
-        else
-        {
-            anim.SetFloat("speed", 0);
-        }*/
     }
 }
