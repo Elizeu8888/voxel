@@ -8,7 +8,7 @@ public class Playercontroller : MonoBehaviour
     public Transform cam;
     public float speed = 6f;
     public float turnsmoothing = 0.1f;
-    float turnsmoothvelocity;
+    float turnsmoothvelocity = 0.5f;
 
 
     public float gravity = -9.81f;
@@ -32,8 +32,6 @@ public class Playercontroller : MonoBehaviour
     {
 
 
-
-
         isgrounded = Physics.CheckSphere(groundcheck.position, grounddistance, groundmask);
 
 
@@ -44,19 +42,6 @@ public class Playercontroller : MonoBehaviour
 
 
 
-        if ((GetComponent<Rigidbody>().velocity.magnitude > 0.01) && isgrounded)
-        {
-            anim.SetFloat("speed", 1);
-
-        }
-        else
-        {
-            anim.SetFloat("speed", 0);
-        }
-
-
-
-
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -64,7 +49,9 @@ public class Playercontroller : MonoBehaviour
 
 
 
+        velocity.y += gravity * Time.deltaTime;
 
+        controller.Move(velocity * Time.deltaTime);
 
 
 
@@ -75,13 +62,11 @@ public class Playercontroller : MonoBehaviour
             float targetangle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetangle, ref turnsmoothvelocity, turnsmoothing);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
 
+            print("ooo");
             Vector3 movedir = Quaternion.Euler(0f, targetangle, 0f) * Vector3.forward;
             controller.Move(movedir.normalized * speed * Time.deltaTime);
         }
-
-
 
 
         if (Input.GetKey("space") && isgrounded)
@@ -91,9 +76,28 @@ public class Playercontroller : MonoBehaviour
 
 
 
-        velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        anim.SetBool("walking", false);
+
+
+
+
+        if ((GetComponent<Rigidbody>().velocity.magnitude > 0.5) && isgrounded)
+        {
+            anim.SetBool("walking", true);
+
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+        }
+
+
+
+
+
+
+
 
 
 
@@ -104,6 +108,7 @@ public class Playercontroller : MonoBehaviour
 
     void FixedUpdate()
     {
+
 
     }
 }

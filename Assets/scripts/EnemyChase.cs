@@ -11,7 +11,8 @@ public class EnemyChase : MonoBehaviour
     public Transform target;
 
     bool playerinrange;
-    
+    public Transform gunslot;
+    public Rigidbody rocketprefab;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,12 @@ public class EnemyChase : MonoBehaviour
 
         transform.LookAt(target);
 
-
+        if (playerinrange)
+        {
+            Rigidbody rocketinstance;
+            rocketinstance = Instantiate(rocketprefab, gunslot.position, gunslot.rotation) as Rigidbody;
+            rocketinstance.AddForce(gunslot.forward * 1000);
+        }
 
     }
 }
