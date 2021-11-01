@@ -32,7 +32,19 @@ public class Playercontroller : MonoBehaviour
     {
 
 
+        anim.SetBool("grounded", false);
+
         isgrounded = Physics.CheckSphere(groundcheck.position, grounddistance, groundmask);
+
+        if (!isgrounded)
+        {
+            anim.SetBool("grounded", false);
+        }
+        if (isgrounded)
+        {
+            anim.SetBool("grounded", true);
+        }
+
 
 
         if (isgrounded && velocity.y < 0)
@@ -66,6 +78,10 @@ public class Playercontroller : MonoBehaviour
             print("ooo");
             Vector3 movedir = Quaternion.Euler(0f, targetangle, 0f) * Vector3.forward;
             controller.Move(movedir.normalized * speed * Time.deltaTime);
+        }
+        else
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
 
@@ -104,7 +120,10 @@ public class Playercontroller : MonoBehaviour
 
     }
 
+    void OnCollisionEnter()
+    {
 
+    }
 
     void FixedUpdate()
     {

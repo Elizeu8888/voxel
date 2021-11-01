@@ -14,11 +14,12 @@ public class EnemyChase : MonoBehaviour
     public Transform gunslot;
     public Rigidbody rocketprefab;
 
+    bool firerate;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        firerate = false;
     }
 
     // Update is called once per frame
@@ -31,12 +32,19 @@ public class EnemyChase : MonoBehaviour
 
         transform.LookAt(target);
 
-        if (playerinrange)
+        if (playerinrange || firerate == true)
         {
             Rigidbody rocketinstance;
             rocketinstance = Instantiate(rocketprefab, gunslot.position, gunslot.rotation) as Rigidbody;
-            rocketinstance.AddForce(gunslot.forward * 1000);
+            rocketinstance.AddForce(gunslot.forward * 5000);
+            firerate = true;
+
         }
+
+
+
+
+
 
     }
 }
