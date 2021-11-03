@@ -24,12 +24,27 @@ public class Playercontroller : MonoBehaviour
 
     void start()
     {
+        anim.SetBool("weapondrawn", false);
         //anim = GetComponent<Animator>();
     }
 
 
     void Update()
     {
+
+
+
+
+        if (Input.GetKey("v"))
+        {
+            anim.SetBool("weapondrawn", true);
+        }
+        if (Input.GetKey("c"))
+        {
+            anim.SetBool("weapondrawn", false);
+        }
+
+
 
 
         anim.SetBool("grounded", false);
