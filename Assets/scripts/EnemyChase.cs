@@ -5,46 +5,67 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     public Transform playercheck;
-    public float chaserange = 0.4f;
+    public float chaserange = 20f;
     public LayerMask layertarget;
 
     public Transform target;
-
+    
     bool playerinrange;
     public Transform gunslot;
     public Rigidbody rocketprefab;
+    public float timer = 10f;
+    GameObject player;
 
-    bool firerate;
 
-    // Start is called before the first frame update
     void Start()
     {
-        firerate = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
-        playerinrange = Physics.CheckSphere(playercheck.position, chaserange, layertarget);
+
 
 
 
         transform.LookAt(target);
 
-        if (playerinrange || firerate == true)
+        if (playerinrange)
         {
-            Rigidbody rocketinstance;
-            rocketinstance = Instantiate(rocketprefab, gunslot.position, gunslot.rotation) as Rigidbody;
-            rocketinstance.AddForce(gunslot.forward * 5000);
-            firerate = true;
+            if (timer <= 1f)
+            {
+                Rigidbody rocketinstance;
+                rocketinstance = Instantiate(rocketprefab, gunslot.position, gunslot.rotation) as Rigidbody;
+                rocketinstance.AddForce(gunslot.forward * 3000);
+                timer = 10f;
+            }
 
-        }
-
-
-
+        }timer--;
 
 
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            playerinrange = true;
+        }
+    }
+
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            playerinrange = false;
+        }
+    }
+
+
+
+
 }

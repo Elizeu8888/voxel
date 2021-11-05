@@ -11,6 +11,10 @@ public class Playercontroller : MonoBehaviour
     float turnsmoothvelocity = 0.5f;
 
 
+    public static int playerscore = 0;
+
+    GameObject coin;
+
     public float gravity = -9.81f;
     public float jumpheight = 5f;
 
@@ -24,6 +28,7 @@ public class Playercontroller : MonoBehaviour
 
     void start()
     {
+        coin = GameObject.FindGameObjectWithTag("Coin");
         anim.SetBool("weapondrawn", false);
         //anim = GetComponent<Animator>();
     }
@@ -134,6 +139,18 @@ public class Playercontroller : MonoBehaviour
 
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == coin)
+        {
+            playerscore = playerscore + 420;
+        }
+    }
+
+
+
+
 
     void OnCollisionEnter()
     {
