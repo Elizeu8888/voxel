@@ -13,7 +13,7 @@ public class Playercontroller : MonoBehaviour
 
     public static int playerscore = 0;
 
-    GameObject coin;
+    private GameObject coin;
 
     public float gravity = -9.81f;
     public float jumpheight = 5f;
