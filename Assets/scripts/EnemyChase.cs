@@ -38,7 +38,7 @@ public class EnemyChase : MonoBehaviour
             {
                 Rigidbody rocketinstance;
                 rocketinstance = Instantiate(rocketprefab, gunslot.position, gunslot.rotation) as Rigidbody;
-                rocketinstance.AddForce(gunslot.forward * 3000);
+                rocketinstance.AddForce(gunslot.forward * 6000);
                 timer = 10f;
             }
 
